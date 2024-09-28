@@ -1,5 +1,6 @@
 const express = require('express');
 const mongodb = require('mongodb');
+require('dotenv').config();
 
 const router = express.Router();
 
@@ -27,7 +28,7 @@ router.delete('/:id', async (req, res) => {
 })
 
 async function loadPostCollection() {
-    const client = await mongodb.MongoClient.connect('mongodb+srv://jlfr2077:Abc123@vuemongo.8k25a.mongodb.net/?retryWrites=true&w=majority&appName=vuemongo');
+    const client = await mongodb.MongoClient.connect(process.env.MONGODB_URI);
     return client.db('vuemongo').collection('posts');
 }
 
